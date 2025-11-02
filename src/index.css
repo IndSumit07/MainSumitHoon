@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #000;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #1b1a1a 0px,
+    #141414 2px,
+    #000 2px,
+    #000 8px
+  );
+  background-repeat: repeat;
+  background-attachment: fixed;
+  color: white; /* optional: for text visibility */
+}
+
+*{
+  ::-webkit-scrollbar{
+    display: none;
+  }
+}
