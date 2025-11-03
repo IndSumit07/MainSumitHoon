@@ -117,6 +117,7 @@ const Hero = () => {
                 </g>
               </svg>
             ),
+            link: "",
           },
           {
             id: 2,
@@ -137,6 +138,7 @@ const Hero = () => {
                 <circle cx="4" cy="4" r="2" />
               </svg>
             ),
+            link: "https://www.linkedin.com/in/sumit-kumar-545737378/",
           },
           {
             id: 3,
@@ -156,14 +158,16 @@ const Hero = () => {
                 <path d="M9 18c-4.51 2-5-2-7-2" />
               </svg>
             ),
+            link: "https://github.com/IndSumit07",
           },
         ].map((icon) => (
-          <div
+          <a
+            href={icon.link}
             key={icon.id}
             className="bg-[#2e2e2f] p-2 rounded-full transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
           >
             {icon.svg}
-          </div>
+          </a>
         ))}
 
         {/* Expand on hover green dot */}
@@ -219,11 +223,11 @@ const Hero = () => {
           <br />I am also a Data Analyst and ML Engineer.
         </p>
         <div className="flex justify-start items-center px-10 py-10 gap-4">
-          <div className="flex justify-center items-center bg-[#171717] px-5 py-3 rounded-md gap-2 border border-white/10 text-[#99A1AF]">
+          <div className="flex justify-center items-center bg-[#171717] px-5 py-3 rounded-md gap-2 border border-white/10 hover:bg-[#222226] transition-all duration-150 text-[#99A1AF] cursor-pointer select-none">
             <span>Download Resume</span>
             <FileDown color="#99A1AF" />
           </div>
-          <div className="flex justify-center items-center bg-[#171717] px-5 py-3 rounded-md gap-2 border border-white/10 text-[#99A1AF]">
+          <div className="flex justify-center items-center bg-[#171717] px-5 py-3 rounded-md gap-2 border border-white/10 text-[#99A1AF] hover:bg-[#222226] transition-all duration-150 cursor-pointer select-none">
             <span>Get in Touch</span>
             <UserRound color="#99A1AF" />
           </div>
