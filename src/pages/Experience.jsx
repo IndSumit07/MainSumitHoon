@@ -51,11 +51,11 @@ const ExperiencePage = () => {
       ],
       certificates: [
         {
-          title: "Participation Certificate - SIH 2024",
+          title: "Participation Certificate - SIH 2025",
           image:
             "https://res.cloudinary.com/dwfwpivrm/image/upload/v1763626473/SIH_io2ae2.jpg",
-          issuer: "Ministry of Education, Govt. of India",
-          date: "2024",
+          issuer: "GLA University, Mathura",
+          date: "2025",
         },
       ],
     },
