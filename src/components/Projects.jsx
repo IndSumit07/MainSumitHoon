@@ -24,7 +24,7 @@ const Projects = () => {
     {
       name: "Super Pass",
       desc: "All in one event hosting and pass management app.",
-      img: "../public/superpass.png",
+      img: "/Superpass.png",
       url: "https://super-pass-delta.vercel.app/",
       repo: "https://github.com/IndSumit07/Super-Pass",
       tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js", "Razorpay", "Render", "Vercel"],
