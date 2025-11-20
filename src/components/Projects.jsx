@@ -73,7 +73,7 @@ const Projects = () => {
       </header>
 
       {/* Main */}
-      <main className="px-4 md:px-10 relative flex flex-col">
+      <main className="px-4 md:px-10 py-5 relative flex flex-col">
         {projects.map((project, index) => (
           <motion.div
             key={index}

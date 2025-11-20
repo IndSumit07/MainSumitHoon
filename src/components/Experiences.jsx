@@ -21,12 +21,12 @@ const Experiences = () => {
     },
     {
       id: 2,
-      title: "Smart India Hackathon 2024",
+      title: "Smart India Hackathon 2025 Internal",
       type: "Hackathon",
       logo: "https://imgs.search.brave.com/DBs5TimjA1YvSN5llECBsRSJjClerQhoIkK8zzk6GxM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jc2Uu/bm90aWNlYmFyZC5j/b20vd3AtY29udGVu/dC91cGxvYWRzL3Np/dGVzLzIzLzIwMjQv/MDgvU21hcnQtSW5k/aWEtSGFja2F0aG9u/LTIwMjQuanBn",
       details: [
-        "Participated in the national-level Smart India Hackathon 2024 organized by the Government of India.",
-        "Developed a cyber monitoring dashboard for rural internet safety under the BharatNet initiative.",
+        "Participated in the Internal Smart India Hackathon Organised by GLA University, Mathura",
+        ,
       ],
       tech: [
         "React.js",
