@@ -73,7 +73,7 @@ const Projects = () => {
       </header>
 
       {/* Main */}
-      <main className="px-4 md:px-10 py-6 relative flex flex-col gap-10">
+      <main className="px-4 md:px-10 relative flex flex-col">
         {projects.map((project, index) => (
           <motion.div
             key={index}
@@ -81,7 +81,7 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="flex flex-col gap-4 pb-10"
+            className="flex flex-col pb-10"
           >
             <motion.div
               onMouseEnter={() =>
@@ -136,24 +136,24 @@ const Projects = () => {
                   </div>
 
                   {/* Buttons */}
-                  <div className="mt-3 flex gap-3">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openNewTab(project.url);
-                      }}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-[#101010] hover:bg-[#1a1a1a] hover:border-white/30 transition-all duration-300"
+                  <div className="mt-3 flex gap-3 pointer-events-auto">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-[#101010] hover:bg-[#1a1a1a] hover:border-white/30 transition-all duration-300 cursor-pointer select-none"
                     >
                       View Live
                       <ArrowUpRight size={16} />
-                    </button>
+                    </a>
 
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openNewTab(project.repo);
-                      }}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-[#101010] hover:bg-[#1a1a1a] hover:border-white/30 transition-all duration-300"
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-[#101010] hover:bg-[#1a1a1a] hover:border-white/30 transition-all duration-300 cursor-pointer select-none"
                     >
                       View Repo
                       {/* GitHub SVG */}
@@ -179,7 +179,7 @@ const Projects = () => {
                         />
                         <path d="M9 18c-4.51 2-5-2-7-2" />
                       </svg>
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -195,26 +195,6 @@ const Projects = () => {
         {/* final line */}
         <div className="w-full h-[2px] bg-white/6" />
       </main>
-
-      {/* Tooltip */}
-      <AnimatePresence>
-        {supportsHover && hovered && activeIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.15 }}
-            className="fixed z-50 flex items-center gap-2 bg-[#252528] text-white px-3 py-2 rounded-full text-sm pointer-events-none border border-white/20 shadow-xl backdrop-blur-sm"
-            style={{
-              top: pos.y - 14,
-              left: pos.x + 26,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            Visit <ArrowUpRight size={16} />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
