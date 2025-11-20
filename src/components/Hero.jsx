@@ -12,6 +12,7 @@ import {
   ArrowUp,
   CornerDownLeft,
   Briefcase,
+  FileText,
 } from "lucide-react";
 
 const Hero = () => {
@@ -280,17 +281,13 @@ const Hero = () => {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="flex flex-col sm:flex-row justify-start items-center mt-8 md:mt-12 gap-4"
         >
-          <a
-            href="../../public/Sumit Kumar Resume.pdf"
-            download="Sumit_Resume.pdf"
+          <button
+            onClick={() => navigate('/resume')}
             className="group flex justify-center items-center bg-[#171717] px-6 py-3.5 rounded-lg gap-3 border border-white/10 hover:bg-[#222226] hover:border-white/30 transition-all duration-300 text-gray-300 hover:text-white w-full sm:w-auto cursor-pointer"
           >
-            <span className="font-medium">Download Resume</span>
-            <FileDown
-              size={20}
-              className="group-hover:translate-y-1 transition-transform duration-300"
-            />
-          </a>
+            <span className="font-medium">View Resume</span>
+            <FileText size={20} className="group-hover:translate-y-1 transition-transform duration-300" />
+          </button>
           <button
             onClick={() => navigate("/contact")}
             className="group flex justify-center items-center bg-[#171717] px-6 py-3.5 rounded-lg gap-3 border border-white/10 hover:bg-[#222226] hover:border-white/30 transition-all duration-300 text-gray-300 hover:text-white w-full sm:w-auto"
