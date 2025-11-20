@@ -108,7 +108,7 @@ const Hero = () => {
       {/* Floating Bar */}
       <motion.div
         initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1, x: '-50%' }}
+        animate={{ y: 0, opacity: 1, x: "-50%" }}
         transition={{ delay: 1, duration: 0.8, type: "spring" }}
         className="fixed z-40 bottom-4 sm:bottom-6 left-1/2 backdrop-blur-md bg-[#1b1b1b]/80 px-3 sm:px-4 py-3 rounded-full border border-white/20 flex justify-center items-center gap-3 sm:gap-4 shadow-2xl shadow-black/50"
       >
@@ -200,13 +200,15 @@ const Hero = () => {
       </motion.div>
 
       {/* Header */}
-      <motion.header 
+      <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full h-[80px] md:h-[100px] flex justify-between items-center px-5 md:px-10 border-white/20 border-b relative z-10 bg-black/50 backdrop-blur-sm"
       >
-        <h1 className="font-space text-xl md:text-2xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">@Sumit</h1>
+        <h1 className="font-space text-xl md:text-2xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+          @Sumit
+        </h1>
         <div className="flex justify-center items-center gap-8">
           <Link
             to="/projects"
@@ -235,7 +237,11 @@ const Hero = () => {
               onClick={() => handleClick("https://github.com/IndSumit07")}
               className="h-[54px] w-[54px] md:flex hidden justify-center items-center border-white/15 rounded-lg border-2 cursor-pointer hover:border-[#b2b2d8] hover:bg-white/5 transition-all duration-300"
             >
-              <img className="w-6 opacity-80 hover:opacity-100 transition-opacity" src="/github.png" alt="github" />
+              <img
+                className="w-6 opacity-80 hover:opacity-100 transition-opacity"
+                src="/github.png"
+                alt="github"
+              />
             </div>
           </div>
         </div>
@@ -255,31 +261,45 @@ const Hero = () => {
             </span>
           </h3>
         </motion.div>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
           className="w-full md:w-3/4 lg:w-1/2 pt-6 md:pt-10 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed"
         >
-          I build Websites that look and feel good to use. <br className="hidden md:block" /> Specialized in
-          Full Stack Development and UI & UX Design.
+          I build Websites that look and feel good to use.{" "}
+          <br className="hidden md:block" /> Specialized in Full Stack
+          Development and UI & UX Design.
           <br />I am also a Data Analyst and ML Engineer.
         </motion.p>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
           className="flex flex-col sm:flex-row justify-start items-center mt-8 md:mt-12 gap-4"
         >
-          <button className="group flex justify-center items-center bg-[#171717] px-6 py-3.5 rounded-lg gap-3 border border-white/10 hover:bg-[#222226] hover:border-white/30 transition-all duration-300 text-gray-300 hover:text-white w-full sm:w-auto">
+          <a
+            href="../../public/Sumit Kumar Resume.pdf"
+            download="Sumit_Resume.pdf"
+            className="group flex justify-center items-center bg-[#171717] px-6 py-3.5 rounded-lg gap-3 border border-white/10 hover:bg-[#222226] hover:border-white/30 transition-all duration-300 text-gray-300 hover:text-white w-full sm:w-auto cursor-pointer"
+          >
             <span className="font-medium">Download Resume</span>
-            <FileDown size={20} className="group-hover:translate-y-1 transition-transform duration-300" />
-          </button>
-          <button className="group flex justify-center items-center bg-[#171717] px-6 py-3.5 rounded-lg gap-3 border border-white/10 hover:bg-[#222226] hover:border-white/30 transition-all duration-300 text-gray-300 hover:text-white w-full sm:w-auto">
+            <FileDown
+              size={20}
+              className="group-hover:translate-y-1 transition-transform duration-300"
+            />
+          </a>
+          <button
+            onClick={() => navigate("/contact")}
+            className="group flex justify-center items-center bg-[#171717] px-6 py-3.5 rounded-lg gap-3 border border-white/10 hover:bg-[#222226] hover:border-white/30 transition-all duration-300 text-gray-300 hover:text-white w-full sm:w-auto"
+          >
             <span className="font-medium">Get in Touch</span>
-            <UserRound size={20} className="group-hover:scale-110 transition-transform duration-300" />
+            <UserRound
+              size={20}
+              className="group-hover:scale-110 transition-transform duration-300"
+            />
           </button>
         </motion.div>
       </main>
@@ -296,7 +316,7 @@ const Hero = () => {
             aria-modal="true"
             aria-label="Search"
           >
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
