@@ -9,31 +9,31 @@ const Projects = () => {
 
   const projects = [
     {
+      name: "Super Pass",
+      desc: "All in one event hosting and pass management app.",
+      img: "../public/superpass.png",
+      url: "https://super-pass-delta.vercel.app/",
+      repo: "https://github.com/IndSumit07/Super-Pass",
+      category: "Full Stack",
+      tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js", "Razorpay", "Render", "Vercel"],
+    },
+    {
       name: "Bharat Netra",
       desc: "Law Enforcement Website.",
       img: "/bharatnetra.png",
+      category: "Full Stack",
       url: "https://official-bharat-netra.vercel.app/",
-      repo: "https://github.com/yourrepo1",
-      category: "Full Stack",
-      tech: ["React", "Node.js", "MongoDB", "Tailwind"],
-    },
-    {
-      name: "Sudarshan",
-      desc: "Cyber Crime Report Portal.",
-      img: "/sudarshan.png",
-      url: "https://sudarshan-tawny.vercel.app/",
-      repo: "https://github.com/yourrepo2",
-      category: "Full Stack",
-      tech: ["React", "Node.js", "MongoDB", "Tailwind"],
+      repo: "https://github.com/CaffeinatedCodersOfficial/Bharat-Netra-Official",
+      tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js", "Render", "Vercel", "APIs"],
     },
     {
       name: "HearWear",
       desc: "Hearing Aid for Partially Deaf People.",
       img: "/hearwear.png",
+      category: "Full Stack",
       url: "https://hear-wear.vercel.app/",
       repo: "https://github.com/yourrepo3",
-      category: "Data Science",
-      tech: ["Python", "ML", "React"],
+      tech: ["Python", "Machine Learning", "React.js", "TensorFlow"],
     },
   ];
 
