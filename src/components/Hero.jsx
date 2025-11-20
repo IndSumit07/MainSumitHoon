@@ -65,10 +65,10 @@ const Hero = () => {
       route: "/experience",
     },
     {
-      title: "Tech Stack",
-      desc: "View my tech stacks",
-      icon: <Layers />,
-      route: "/tech-stack",
+      title: "Get In Touch",
+      desc: "Contact me",
+      icon: <UserRound />,
+      route: "/contact",
     },
   ];
   const handleClick = (url) => {
