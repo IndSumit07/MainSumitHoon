@@ -67,7 +67,7 @@ const ExperiencePage = () => {
       logo: "https://cognifyz.com/wp-content/uploads/2023/11/cognifyz-1.png",
       description:
         "Worked as a Data Analyst Intern at Cognifyz Technologies, analyzing large datasets and creating insightful visualizations. Developed data-driven solutions and reports to support business decision-making processes.",
-      duration: "2 months",
+      duration: "1 month",
       tech: [
         "Python",
         "Pandas",
