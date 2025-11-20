@@ -1,38 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
-import bharatnetra from "../../public/bharatnetra.png";
-import sudarshan from "../../public/sudarshan.png";
-import hearwear from "../../public/hearwear.png";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Projects = () => {
   const [hovered, setHovered] = useState(false);
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [activeIndex, setActiveIndex] = useState(null);
+  const [supportsHover, setSupportsHover] = useState(true);
+
+  useEffect(() => {
+    try {
+      const mq = window.matchMedia("(hover: hover)");
+      setSupportsHover(mq.matches);
+      const handler = (e) => setSupportsHover(e.matches);
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
+    } catch {
+      setSupportsHover(true);
+    }
+  }, []);
 
   const projects = [
     {
       name: "Bharat Netra",
       desc: "Law Enforcement Website.",
-      img: bharatnetra,
-      url: "https://official-bharat-netra.vercel.app/", // replace later
+      img: "/bharatnetra.png",
+      url: "https://official-bharat-netra.vercel.app/",
+      repo: "https://github.com/yourrepo1",
+      tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB"],
     },
     {
       name: "Sudarshan",
       desc: "Cyber Crime Report Portal.",
-      img: sudarshan,
-      url: "https://sudarshan-tawny.vercel.app/", // replace later
+      img: "/sudarshan.png",
+      url: "https://sudarshan-tawny.vercel.app/",
+      repo: "https://github.com/yourrepo2",
+      tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js"],
     },
     {
       name: "HearWear",
       desc: "Hearing Aid for Partially Deaf People.",
-      img: hearwear,
-      url: "https://hear-wear.vercel.app/", // replace later
+      img: "/hearwear.png",
+      url: "https://hear-wear.vercel.app/",
+      repo: "https://github.com/yourrepo3",
+      tech: ["Python", "Machine Learning", "React.js", "TensorFlow"],
     },
   ];
 
-  const handleMouseMove = (e) => setPos({ x: e.clientX, y: e.clientY });
-  const handleClick = (url) => {
-    if (url && url !== "#") window.open(url, "_blank");
+  const handleMouseMove = (e) => {
+    if (supportsHover) setPos({ x: e.clientX, y: e.clientY });
+  };
+
+  const openNewTab = (url) => {
+    if (!url) return;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -41,69 +62,159 @@ const Projects = () => {
       onMouseMove={handleMouseMove}
     >
       {/* Header */}
-      <header className="w-full px-10 h-[75px] border-white/20 border-b flex justify-between items-center">
-        <span className="text-4xl font-bold">Projects</span>
-        <div className="bg-[#1C1C1F] px-4 py-2 rounded-lg border border-white/10 cursor-pointer hover:bg-[#222226]">
+      <header className="w-full px-6 md:px-10 h-[75px] border-b border-white/20 flex items-center justify-between bg-black/50 backdrop-blur-sm sticky top-0 z-30">
+        <span className="text-2xl md:text-4xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+          Projects
+        </span>
+
+        <button className="bg-[#1C1C1F] px-4 py-2 rounded-lg border border-white/10 hover:bg-[#222226] hover:border-white/30 transition-all duration-300 text-sm md:text-base">
           See all
-        </div>
+        </button>
       </header>
 
-      {/* Main Section */}
-      <main className="px-10 py-5 relative">
+      {/* Main */}
+      <main className="px-4 md:px-10 py-6 relative flex flex-col gap-10">
         {projects.map((project, index) => (
-          <React.Fragment key={index}>
-            <div
-              onMouseEnter={() => {
-                setHovered(true);
-                setActiveIndex(index);
-              }}
-              onMouseLeave={() => {
-                setHovered(false);
-                setActiveIndex(null);
-              }}
-              onClick={() => handleClick(project.url)}
-              className={`flex justify-between items-center rounded-lg px-5 py-5 cursor-pointer transition-all duration-300 ${
-                activeIndex === index ? "scale-[1.02]  " : "scale-100"
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className="flex flex-col gap-4 pb-10"
+          >
+            <motion.div
+              onMouseEnter={() =>
+                supportsHover && (setHovered(true), setActiveIndex(index))
+              }
+              onMouseLeave={() =>
+                supportsHover && (setHovered(false), setActiveIndex(null))
+              }
+              onTouchStart={() => setActiveIndex(index)}
+              whileHover={{ scale: 1.01, backgroundColor: "rgba(255, 255, 255, 0.03)" }}
+              transition={{ duration: 0.3 }}
+              className={`rounded-lg px-4 py-5 transition-colors duration-300 border border-transparent hover:border-white/5 ${
+                activeIndex === index ? "bg-white/5" : ""
               }`}
             >
-              <div className="flex flex-col gap-3">
-                <h3 className="text-5xl font-semibold">{project.name}</h3>
-                <p className="text-[#99A1AF] text-lg">{project.desc}</p>
-              </div>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                {/* Left */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-3xl md:text-4xl font-semibold leading-tight group-hover:text-[#b2b2d8] transition-colors">
+                    {project.name}
+                  </h3>
+                  <p className="text-[#99A1AF] text-sm sm:text-base mt-2">
+                    {project.desc}
+                  </p>
+                  
+                  {/* Tech Stack */}
+                  {project.tech && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {project.tech.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="bg-[#18181B] px-3 py-1 text-xs md:text-sm border-white/20 border rounded-md hover:border-white/40 font-medium hover:scale-105 transition-all duration-150 select-none text-gray-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-              <div className="border-white/20 border-2 rounded-lg overflow-hidden">
-                <div className="w-[300px] h-[150px] rounded border-8 border-[#18181B] overflow-hidden">
-                  <img
-                    src={project.img}
-                    className="w-full h-full object-cover rounded-lg"
-                    alt={project.name}
-                  />
+                {/* Right (Image + Buttons) */}
+                <div className="flex-shrink-0 w-full md:w-[340px]">
+                  <div className="rounded-lg border border-white/10 overflow-hidden bg-[#080808] relative group">
+                    <img
+                      src={project.img}
+                      className="w-full h-40 sm:h-44 md:h-44 object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                      draggable={false}
+                      alt={project.name}
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="mt-3 flex gap-3">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openNewTab(project.url);
+                      }}
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-[#101010] hover:bg-[#1a1a1a] hover:border-white/30 transition-all duration-300"
+                    >
+                      View Live
+                      <ArrowUpRight size={16} />
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openNewTab(project.repo);
+                      }}
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-[#101010] hover:bg-[#1a1a1a] hover:border-white/30 transition-all duration-300"
+                    >
+                      View Repo
+                      {/* GitHub SVG */}
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path
+                          d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5 
+                        .08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 
+                        0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 
+                        2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 
+                        5.403 0 0 0 4 9c0 3.5 3 5.5 6 
+                        5.5-.39.49-.68 1.05-.85 
+                        1.65-.17.6-.22 1.23-.15 
+                        1.85v4"
+                        />
+                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* line between projects */}
+            {/* Separator */}
             {index !== projects.length - 1 && (
-              <div className="w-full h-[2px] bg-white/10"></div>
+              <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
             )}
-          </React.Fragment>
+          </motion.div>
         ))}
 
-        {/* Cursor-follow “Visit” tooltip */}
-        {hovered && (
-          <div
-            className="fixed z-50 flex items-center gap-2 bg-[#252528] text-white px-4 py-2 rounded-full text-sm font-medium pointer-events-none transition-opacity duration-150"
+        {/* final line */}
+        <div className="w-full h-[2px] bg-white/6" />
+      </main>
+
+      {/* Tooltip */}
+      <AnimatePresence>
+        {supportsHover && hovered && activeIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.15 }}
+            className="fixed z-50 flex items-center gap-2 bg-[#252528] text-white px-3 py-2 rounded-full text-sm pointer-events-none border border-white/20 shadow-xl backdrop-blur-sm"
             style={{
-              top: pos.y - 10,
-              left: pos.x + 25,
+              top: pos.y - 14,
+              left: pos.x + 26,
               transform: "translate(-50%, -50%)",
             }}
           >
-            <span>Visit</span>
-            <ArrowUpRight size={18} />
-          </div>
+            Visit <ArrowUpRight size={16} />
+          </motion.div>
         )}
-      </main>
+      </AnimatePresence>
     </div>
   );
 };
