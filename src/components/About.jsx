@@ -23,11 +23,10 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="text-lg md:text-xl leading-relaxed text-white/75 max-w-4xl"
         >
-          I am a Computer Science student at GLA University, Mathura, with a
+          I am a Computer Science & Engineering student at GLA University, Mathura, with a
           strong foundation in competitive programming and web development. I
           specialize in building efficient, scalable applications and solving
-          complex algorithmic challenges. <br /> <br /> Beyond development, I am
-          a learner in Machine Learning and Data Analysis, where I explore
+          complex algorithmic challenges. <br /> <br /> I am also a learner in Machine Learning and Data Analysis, where I explore
           data-driven insights to build intelligent systems. I am committed to
           bridging the gap between robust logic and impactful digital
           experiences.
