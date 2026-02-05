@@ -1,4 +1,5 @@
 import React from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import Projects from "./pages/Projects";
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/resume" element={<Resume />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <SpeedInsights />
     </>
   );
 };
