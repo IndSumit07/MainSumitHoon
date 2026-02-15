@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
   const [hovered, setHovered] = useState(false);
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [activeIndex, setActiveIndex] = useState(null);
   const [supportsHover, setSupportsHover] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
@@ -22,12 +24,28 @@ const Projects = () => {
 
   const projects = [
     {
+      name: "Chatter",
+      desc: "Realtime chat app in which you can add friends chat in realtime with full privacy.",
+      img: "/chatter.png",
+      url: "https://chatter-ten-teal.vercel.app",
+      repo: "https://github.com/IndSumit07/Chatter",
+      tech: ["Next.js", "MongoDB", "Ably", "Cloudflare"],
+    },
+    {
       name: "Super Pass",
       desc: "All in one event hosting and pass management app.",
       img: "/Superpass.png",
       url: "https://super-pass-delta.vercel.app/",
       repo: "https://github.com/IndSumit07/Super-Pass",
       tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js", "Razorpay", "Render", "Vercel"],
+    },
+    {
+      name: "SYRUS",
+      desc: "SEO intelligence platform to add websites, crawl pages, monitor scores, and get improvement suggestions.",
+      img: "/syrus.png",
+      url: "https://syrus-nine.vercel.app/",
+      repo: "https://github.com/IndSumit07/SYRUS",
+      tech: ["React.js", "Node.js", "MongoDB", "Express.js", "Web Crawler", "SEO"],
     },
     {
       name: "Bharat Netra",
@@ -67,14 +85,17 @@ const Projects = () => {
           Projects
         </span>
 
-        <button className="bg-[#1C1C1F] px-4 py-2 rounded-lg border border-white/10 hover:bg-[#222226] hover:border-white/30 transition-all duration-300 text-sm md:text-base">
+        <button
+          onClick={() => navigate("/projects")}
+          className="bg-[#1C1C1F] px-4 py-2 rounded-lg border border-white/10 hover:bg-[#222226] hover:border-white/30 transition-all duration-300 text-sm md:text-base"
+        >
           See all
         </button>
       </header>
 
       {/* Main */}
       <main className="px-4 md:px-10 py-5 relative flex flex-col">
-        {projects.map((project, index) => (
+        {projects.slice(0, 3).map((project, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 50 }}
@@ -93,9 +114,8 @@ const Projects = () => {
               onTouchStart={() => setActiveIndex(index)}
               whileHover={{ scale: 1.01, backgroundColor: "rgba(255, 255, 255, 0.03)" }}
               transition={{ duration: 0.3 }}
-              className={`rounded-lg px-4 py-5 transition-colors duration-300 border border-transparent hover:border-white/5 ${
-                activeIndex === index ? "bg-white/5" : ""
-              }`}
+              className={`rounded-lg px-4 py-5 transition-colors duration-300 border border-transparent hover:border-white/5 ${activeIndex === index ? "bg-white/5" : ""
+                }`}
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 {/* Left */}
@@ -106,7 +126,7 @@ const Projects = () => {
                   <p className="text-[#99A1AF] text-sm sm:text-base mt-2">
                     {project.desc}
                   </p>
-                  
+
                   {/* Tech Stack */}
                   {project.tech && (
                     <div className="flex flex-wrap gap-2 mt-4">

@@ -9,6 +9,15 @@ const Projects = () => {
 
   const projects = [
     {
+      name: "Chatter",
+      desc: "Realtime chat app in which you can add friends chat in realtime with full privacy.",
+      img: "/chatter.png",
+      url: "https://chatter-ten-teal.vercel.app",
+      repo: "https://github.com/IndSumit07/Chatter",
+      category: "Full Stack",
+      tech: ["Next.js", "MongoDB", "Ably", "Cloudflare"],
+    },
+    {
       name: "Super Pass",
       desc: "All in one event hosting and pass management app.",
       img: "/Superpass.png",
@@ -16,6 +25,15 @@ const Projects = () => {
       repo: "https://github.com/IndSumit07/Super-Pass",
       category: "Full Stack",
       tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js", "Razorpay", "Render", "Vercel"],
+    },
+    {
+      name: "SYRUS",
+      desc: "SEO intelligence platform to add websites, crawl pages, monitor scores, and get improvement suggestions.",
+      img: "/syrus.png",
+      url: "https://syrus-nine.vercel.app/",
+      repo: "https://github.com/IndSumit07/SYRUS",
+      category: "Full Stack",
+      tech: ["React.js", "Node.js", "MongoDB", "Express.js", "Web Crawler", "SEO"],
     },
     {
       name: "Bharat Netra",
@@ -47,14 +65,14 @@ const Projects = () => {
       <div className="w-full max-w-7xl border-l border-r border-white/20 min-h-screen flex flex-col bg-black">
         <header className="px-6 md:px-20 py-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-white/20 bg-black/50 backdrop-blur-sm  top-0 z-30">
           <div className="flex flex-col gap-2 md:gap-5">
-            <motion.h3 
+            <motion.h3
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               className="text-4xl md:text-6xl lg:text-8xl font-bold"
             >
               Projects
             </motion.h3>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
@@ -76,7 +94,7 @@ const Projects = () => {
 
         <main className="flex flex-col items-center py-10 px-6 md:px-10 flex-1">
           {/* Sorting */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -86,11 +104,10 @@ const Projects = () => {
               <div
                 key={cat}
                 onClick={() => setActiveLink(cat)}
-                className={`${
-                  activeLink === cat
-                    ? "bg-[#1C1C1C] text-white"
-                    : "text-white/50 hover:text-white"
-                } px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex justify-center items-center text-sm md:text-base`}
+                className={`${activeLink === cat
+                  ? "bg-[#1C1C1C] text-white"
+                  : "text-white/50 hover:text-white"
+                  } px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex justify-center items-center text-sm md:text-base`}
               >
                 {cat}
               </div>
@@ -98,7 +115,7 @@ const Projects = () => {
           </motion.div>
 
           {/* Main Content */}
-          <motion.div 
+          <motion.div
             layout
             className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full"
           >
@@ -127,7 +144,7 @@ const Projects = () => {
                       {project.desc}
                     </p>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-2 text-xs">
                     {project.tech.map((t, i) => (
                       <div key={i} className="bg-[#111111] px-3 py-1 rounded-full border-white/5 select-none border text-white/50">
@@ -137,7 +154,7 @@ const Projects = () => {
                   </div>
 
                   <div className="mt-auto flex justify-center items-center gap-3 pt-2">
-                    <a 
+                    <a
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -146,7 +163,7 @@ const Projects = () => {
                       <ExternalLink size={16} />
                       <span className="text-sm">Live</span>
                     </a>
-                    <a 
+                    <a
                       href={project.repo}
                       target="_blank"
                       rel="noopener noreferrer"
