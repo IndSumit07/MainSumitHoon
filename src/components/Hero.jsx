@@ -293,7 +293,7 @@ const Hero = () => {
           I build Websites that look and feel good to use.{" "}
           <br className="hidden md:block" /> Specialized in Full Stack
           Development and UI & UX Design.
-          <br />I am also a Data Analyst and ML Engineer.
+          <br />I am also a Data Analyst and ML Learner.
         </motion.p>
 
         <motion.div
