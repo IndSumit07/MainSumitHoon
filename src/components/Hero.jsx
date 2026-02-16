@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  Award,
   FileDown,
   Folder,
   Layers,
@@ -64,6 +65,12 @@ const Hero = () => {
       desc: "View my experience",
       icon: <Briefcase />,
       route: "/experience",
+    },
+    {
+      title: "Certificates",
+      desc: "View my certifications",
+      icon: <Award />,
+      route: "/certificates",
     },
     {
       title: "Get In Touch",
@@ -218,6 +225,18 @@ const Hero = () => {
             className="font-semibold cursor-pointer hover:text-[#b2b2d8] transition-colors duration-300 md:flex hidden"
           >
             Projects
+          </Link>
+          <Link
+            to="/experience"
+            className="font-semibold cursor-pointer hover:text-[#b2b2d8] transition-colors duration-300 md:flex hidden"
+          >
+            Experience
+          </Link>
+          <Link
+            to="/certificates"
+            className="font-semibold cursor-pointer hover:text-[#b2b2d8] transition-colors duration-300 md:flex hidden"
+          >
+            Certificates
           </Link>
           <div className="flex justify-center items-center gap-5">
             <div

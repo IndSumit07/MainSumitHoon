@@ -38,25 +38,7 @@ const Experiences = () => {
         "Brevo",
       ],
     },
-    {
-      id: 3,
-      title: "Data Analyst Intern",
-      type: "Internship",
-      logo: "https://cognifyz.com/wp-content/uploads/2023/11/cognifyz-1.png",
-      details: [
-        "Worked as a Data Analyst Intern at Cognifyz Technologies, analyzing large datasets and creating insightful visualizations.",
-        "Developed data-driven solutions and reports to support business decision-making processes.",
-      ],
-      tech: [
-        "Python",
-        "Pandas",
-        "NumPy",
-        "Matplotlib",
-        "Seaborn",
-        "SQL",
-        "Excel",
-      ],
-    },
+
   ];
 
   const toggleDrawer = (index) => {

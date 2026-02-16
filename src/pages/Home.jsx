@@ -5,6 +5,7 @@ import Experiences from "../components/Experiences";
 import Github from "../components/Github";
 import About from "../components/About";
 import GetInTouch from "../components/GetInTouch";
+import Certificates from "../components/Certificates";
 
 const Home = () => {
   return (
@@ -14,6 +15,8 @@ const Home = () => {
       <Projects />
       <div className="w-full h-[75px] border-l border-r border-white/20 bg-[radial-gradient(circle,_#1D202A_1px,_transparent_1px)] [background-size:20px_18px] bg-[#000000]"></div>
       <Experiences />
+      <div className="w-full h-[75px] border-l border-r border-white/20 bg-[radial-gradient(circle,_#1D202A_1px,_transparent_1px)] [background-size:20px_18px] bg-[#000000]"></div>
+      <Certificates />
       <div className="w-full h-[75px] border-l border-r border-white/20 bg-[radial-gradient(circle,_#1D202A_1px,_transparent_1px)] [background-size:20px_18px] bg-[#000000]"></div>
       <Github />
       <div className="w-full h-[75px] border-l border-r border-white/20 bg-[radial-gradient(circle,_#1D202A_1px,_transparent_1px)] [background-size:20px_18px] bg-[#000000]"></div>

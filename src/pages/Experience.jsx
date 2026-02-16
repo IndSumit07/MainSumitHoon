@@ -59,34 +59,7 @@ const ExperiencePage = () => {
         },
       ],
     },
-    {
-      id: 3,
-      title: "Data Analyst Intern",
-      company: "Cognifyz Technologies",
-      type: "Internship",
-      logo: "https://cognifyz.com/wp-content/uploads/2023/11/cognifyz-1.png",
-      description:
-        "Worked as a Data Analyst Intern at Cognifyz Technologies, analyzing large datasets and creating insightful visualizations. Developed data-driven solutions and reports to support business decision-making processes.",
-      duration: "1 month",
-      tech: [
-        "Python",
-        "Pandas",
-        "NumPy",
-        "Matplotlib",
-        "Seaborn",
-        "SQL",
-        "Excel",
-      ],
-      certificates: [
-        {
-          title: "Data Analyst Internship Certificate",
-          image:
-            "https://res.cloudinary.com/dwfwpivrm/image/upload/v1763626543/Offer_Letter_ozdrie.jpg",
-          issuer: "Cognifyz Technologies",
-          date: "2024",
-        },
-      ],
-    },
+
   ];
 
   const filteredExperiences =
@@ -161,11 +134,10 @@ const ExperiencePage = () => {
               <div
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`${
-                  activeFilter === filter
+                className={`${activeFilter === filter
                     ? "bg-[#1C1C1C] text-white"
                     : "text-white/50 hover:text-white"
-                } px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex justify-center items-center text-sm md:text-base`}
+                  } px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex justify-center items-center text-sm md:text-base`}
               >
                 {filter}
               </div>
