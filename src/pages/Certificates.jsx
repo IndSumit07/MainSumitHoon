@@ -38,7 +38,7 @@ const Certificates = () => {
         <div className="w-full min-h-screen bg-black text-white font-space flex justify-center bg-[repeating-linear-gradient(45deg,_#1b1a1a_0px,_#141414_2px,_#000_2px,_#000_8px)] bg-repeat bg-fixed">
             <div className="w-full max-w-7xl border-l border-r border-white/20 min-h-screen flex flex-col bg-black">
                 {/* Header */}
-                <header className="px-6 md:px-20 py-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-white/20 bg-black/50 backdrop-blur-sm sticky top-0 z-30">
+                <header className="px-6 md:px-20 py-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-white/20 bg-black/50 backdrop-blur-sm">
                     <div className="flex flex-col gap-2 md:gap-5">
                         <motion.h3
                             initial={{ opacity: 0, x: -20 }}
