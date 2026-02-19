@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ContributionGraph = ({ username }) => {
-  const [weeks, setWeeks] = useState([]);
+  const [months, setMonths] = useState([]);
   const [total, setTotal] = useState(0);
   const [hoveredDay, setHoveredDay] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
@@ -41,8 +41,9 @@ const ContributionGraph = ({ username }) => {
         const calendar =
           res.data.data.user.contributionsCollection.contributionCalendar;
 
-        setWeeks(calendar.weeks);
         setTotal(calendar.totalContributions);
+        processData(calendar.weeks);
+
       } catch (error) {
         console.error("Error fetching GitHub data:", error);
       }
@@ -50,6 +51,70 @@ const ContributionGraph = ({ username }) => {
 
     fetchContributions();
   }, [username]);
+
+  const processData = (weeks) => {
+    // Flatten all days from the GitHub weeks structure
+    const allDays = weeks.flatMap(week => week.contributionDays);
+
+    const monthsData = [];
+    let currentMonth = null;
+    let currentWeek = Array(7).fill(null);
+
+    allDays.forEach((dayData) => {
+      const date = new Date(dayData.date);
+      const dayIdx = date.getDay();
+      const monthIdx = date.getMonth();
+      const monthName = date.toLocaleDateString('en-US', { month: 'short' });
+
+      // Initialize currentMonth if it's the first iteration
+      if (!currentMonth) {
+        currentMonth = {
+          name: monthName,
+          monthIndex: monthIdx,
+          weeks: []
+        };
+      }
+
+      // Check if we moved to a new month
+      if (monthIdx !== currentMonth.monthIndex) {
+        // Push the pending week to the old month
+        if (currentWeek.some(d => d !== null)) {
+          currentMonth.weeks.push(currentWeek);
+        }
+        // Push the old month to the list
+        if (currentMonth.weeks.length > 0) {
+          monthsData.push(currentMonth);
+        }
+
+        // Start a new month
+        currentMonth = {
+          name: monthName,
+          monthIndex: monthIdx,
+          weeks: []
+        };
+        // Reset week
+        currentWeek = Array(7).fill(null);
+
+      } else if (dayIdx === 0 && currentWeek.some(d => d !== null)) {
+        // It's Sunday, and we have data in the current week, so start a new column (week)
+        currentMonth.weeks.push(currentWeek);
+        currentWeek = Array(7).fill(null);
+      }
+
+      // Place the day in the current week
+      currentWeek[dayIdx] = dayData;
+    });
+
+    // Handle the last remaining week and month
+    if (currentWeek.some(d => d !== null)) {
+      currentMonth.weeks.push(currentWeek);
+    }
+    if (currentMonth && currentMonth.weeks.length > 0) {
+      monthsData.push(currentMonth);
+    }
+
+    setMonths(monthsData);
+  };
 
   // Determine color level for each contribution
   const getColor = (count) => {
@@ -62,11 +127,11 @@ const ContributionGraph = ({ username }) => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'short', 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
     });
   };
 
@@ -84,47 +149,38 @@ const ContributionGraph = ({ username }) => {
   };
 
   return (
-    <div className="bg-black text-white rounded-xl font-space relative">
-      <div className="overflow-x-auto pb-2">
-        <div className="inline-block min-w-full">
-          {/* Month Labels */}
-          <div className="flex gap-[4px] mb-2">
-            {weeks.map((week, i) => {
-              const firstDay = week.contributionDays[0];
-              if (!firstDay) return <div key={i} className="w-4" />;
-              
-              const date = new Date(firstDay.date);
-              const isFirstWeekOfMonth = date.getDate() <= 7;
-              
-              return (
-                <div key={i} className="w-4 flex-shrink-0">
-                  {isFirstWeekOfMonth && (
-                    <span className="block text-[10px] text-gray-500 whitespace-nowrap">
-                      {date.toLocaleDateString('en-US', { month: 'short' })}
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+    <div className="bg-black text-white rounded-xl font-space relative p-4 border border-white/10">
+      <div className="overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
+        <div className="flex gap-2">
+          {months.map((month, i) => (
+            <div key={i} className="flex flex-col gap-2">
+              {/* Month Label */}
+              <span className="text-xs text-gray-500 h-4 px-1 text-center block">
+                {month.name}
+              </span>
 
-          {/* Contribution Grid */}
-          <div className="flex gap-[4px]">
-            {weeks.map((week, i) => (
-              <div key={i} className="flex flex-col gap-[4px] flex-shrink-0">
-                {week.contributionDays.map((day, j) => (
-                  <div
-                    key={j}
-                    onMouseEnter={(e) => handleMouseEnter(day, e)}
-                    onMouseLeave={handleMouseLeave}
-                    className={`w-4 h-4 rounded-sm ${getColor(
-                      day.contributionCount
-                    )} transition-all duration-150 hover:ring-2 hover:ring-white/50 cursor-pointer`}
-                  ></div>
+              {/* Weeks Grid for Grid */}
+              <div className="flex gap-[3px]">
+                {month.weeks.map((week, j) => (
+                  <div key={j} className="flex flex-col gap-[3px]">
+                    {week.map((day, k) => {
+                      if (!day) return <div key={k} className="w-3 h-3 bg-transparent" />;
+                      return (
+                        <div
+                          key={k}
+                          onMouseEnter={(e) => handleMouseEnter(day, e)}
+                          onMouseLeave={handleMouseLeave}
+                          className={`w-3 h-3 rounded-sm ${getColor(
+                            day.contributionCount
+                          )} transition-all duration-150 hover:ring-2 hover:ring-white/50 cursor-pointer`}
+                        ></div>
+                      );
+                    })}
+                  </div>
                 ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -147,7 +203,7 @@ const ContributionGraph = ({ username }) => {
         </div>
       )}
 
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mt-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mt-4 px-1">
         <div className="text-xs sm:text-sm text-gray-400">
           {total} contributions in the last year
         </div>
