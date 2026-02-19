@@ -13,12 +13,11 @@ const LeetCodeGraph = ({ username }) => {
         const fetchLeetCodeData = async () => {
             try {
                 const res = await axios.get(
-                    `https://alfa-leetcode-api.onrender.com/${username}/calendar`
+                    `https://leetcode-stats.tashif.codes/${username}`
                 );
 
-                if (res.data) {
-                    const submissionCalendar = JSON.parse(res.data.submissionCalendar || "{}");
-                    processData(submissionCalendar);
+                if (res.data && res.data.submissionCalendar) {
+                    processData(res.data.submissionCalendar);
                 }
             } catch (err) {
                 console.error("Error fetching LeetCode data:", err);
