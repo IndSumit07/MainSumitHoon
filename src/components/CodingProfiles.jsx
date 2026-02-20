@@ -3,14 +3,13 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import LeetCodeGraph from "./LeetCodeGraph";
 
-
 const CodingProfiles = () => {
     const profiles = [
         {
             name: "LeetCode",
             username: "MainSumitHoon",
             url: "https://leetcode.com/MainSumitHoon",
-            icon: "https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png",
+            icon: "/icons/leetcode.svg",
             color: "hover:bg-[#ffa116]/10 hover:border-[#ffa116]/50",
             textColor: "text-[#ffa116]",
         },
@@ -18,9 +17,33 @@ const CodingProfiles = () => {
             name: "Codeforces",
             username: "MainSumitHoon",
             url: "https://codeforces.com/profile/MainSumitHoon",
-            icon: "https://cdn.iconscout.com/icon/free/png-256/free-code-forces-3628695-3029920.png",
+            icon: "/icons/codeforces.svg",
             color: "hover:bg-[#1f8dd6]/10 hover:border-[#1f8dd6]/50",
             textColor: "text-[#1f8dd6]",
+        },
+        {
+            name: "AtCoder",
+            username: "mainsumithoon",
+            url: "https://atcoder.jp/users/mainsumithoon",
+            icon: "/icons/atcoder.png",
+            color: "hover:bg-[#1f8dd6]/10 hover:border-[#1f8dd6]/50",
+            textColor: "text-[#1f8dd6]",
+        },
+        {
+            name: "GeeksforGeeks",
+            username: "mainsumithoon",
+            url: "https://www.geeksforgeeks.org/user/mainsumithoon/",
+            icon: "/icons/geeksforgeeks.svg",
+            color: "hover:bg-[#2f8d46]/10 hover:border-[#2f8d46]/50",
+            textColor: "text-[#2f8d46]",
+        },
+        {
+            name: "CodeChef",
+            username: "mainsumithoon",
+            url: "https://www.codechef.com/users/mainsumithoon",
+            icon: "/icons/codechef.svg",
+            color: "hover:bg-[#5b4638]/10 hover:border-[#5b4638]/50",
+            textColor: "text-[#c7a17a]",
         },
     ];
 
@@ -84,8 +107,6 @@ const CodingProfiles = () => {
                     </h3>
                     <LeetCodeGraph username="MainSumitHoon" />
                 </motion.div>
-
-
             </main>
         </div>
     );
