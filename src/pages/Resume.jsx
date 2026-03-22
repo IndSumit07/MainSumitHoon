@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 const Resume = () => {
   const navigate = useNavigate();
   const [pdfError, setPdfError] = useState(false);
-  
+
   // Path to your resume in the public folder
   // Note: In Vite/React, files in 'public' are served at the root '/'
-  const resumeUrl = "/Sumit Kumar Resume.pdf";
+  const resumeUrl = "/Sumit_Kumar_Resume.pdf";
 
   return (
     <div className="w-full min-h-screen bg-black text-white font-space flex flex-col relative overflow-hidden">
@@ -22,7 +22,10 @@ const Resume = () => {
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
         >
-          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+          <ArrowLeft
+            size={20}
+            className="group-hover:-translate-x-1 transition-transform"
+          />
           <span className="hidden sm:inline">Back</span>
         </button>
 
