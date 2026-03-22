@@ -15,8 +15,8 @@ const CodingProfiles = () => {
     },
     {
       name: "Codeforces",
-      username: "MainSumitHoon",
-      url: "https://codeforces.com/profile/MainSumitHoon",
+      username: "IndSumit06",
+      url: "https://codeforces.com/profile/indsumit06",
       icon: "/icons/codeforces.svg",
       color: "hover:bg-[#1f8dd6]/10 hover:border-[#1f8dd6]/50",
       textColor: "text-[#1f8dd6]",
