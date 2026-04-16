@@ -6,6 +6,7 @@ const ContributionGraph = ({ username }) => {
   const [total, setTotal] = useState(0);
   const [hoveredDay, setHoveredDay] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [graphScroller, setGraphScroller] = useState(null);
 
   useEffect(() => {
     const fetchContributions = async () => {
@@ -35,7 +36,7 @@ const ContributionGraph = ({ username }) => {
             headers: {
               Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
             },
-          }
+          },
         );
 
         const calendar =
@@ -43,7 +44,6 @@ const ContributionGraph = ({ username }) => {
 
         setTotal(calendar.totalContributions);
         processData(calendar.weeks);
-
       } catch (error) {
         console.error("Error fetching GitHub data:", error);
       }
@@ -52,9 +52,20 @@ const ContributionGraph = ({ username }) => {
     fetchContributions();
   }, [username]);
 
+  useEffect(() => {
+    if (!graphScroller) return;
+    if (window.innerWidth >= 768) return;
+
+    const scrollToLatest = () => {
+      graphScroller.scrollLeft = graphScroller.scrollWidth;
+    };
+
+    requestAnimationFrame(scrollToLatest);
+  }, [months, graphScroller]);
+
   const processData = (weeks) => {
     // Flatten all days from the GitHub weeks structure
-    const allDays = weeks.flatMap(week => week.contributionDays);
+    const allDays = weeks.flatMap((week) => week.contributionDays);
 
     const monthsData = [];
     let currentMonth = null;
@@ -64,21 +75,21 @@ const ContributionGraph = ({ username }) => {
       const date = new Date(dayData.date);
       const dayIdx = date.getDay();
       const monthIdx = date.getMonth();
-      const monthName = date.toLocaleDateString('en-US', { month: 'short' });
+      const monthName = date.toLocaleDateString("en-US", { month: "short" });
 
       // Initialize currentMonth if it's the first iteration
       if (!currentMonth) {
         currentMonth = {
           name: monthName,
           monthIndex: monthIdx,
-          weeks: []
+          weeks: [],
         };
       }
 
       // Check if we moved to a new month
       if (monthIdx !== currentMonth.monthIndex) {
         // Push the pending week to the old month
-        if (currentWeek.some(d => d !== null)) {
+        if (currentWeek.some((d) => d !== null)) {
           currentMonth.weeks.push(currentWeek);
         }
         // Push the old month to the list
@@ -90,12 +101,11 @@ const ContributionGraph = ({ username }) => {
         currentMonth = {
           name: monthName,
           monthIndex: monthIdx,
-          weeks: []
+          weeks: [],
         };
         // Reset week
         currentWeek = Array(7).fill(null);
-
-      } else if (dayIdx === 0 && currentWeek.some(d => d !== null)) {
+      } else if (dayIdx === 0 && currentWeek.some((d) => d !== null)) {
         // It's Sunday, and we have data in the current week, so start a new column (week)
         currentMonth.weeks.push(currentWeek);
         currentWeek = Array(7).fill(null);
@@ -106,7 +116,7 @@ const ContributionGraph = ({ username }) => {
     });
 
     // Handle the last remaining week and month
-    if (currentWeek.some(d => d !== null)) {
+    if (currentWeek.some((d) => d !== null)) {
       currentMonth.weeks.push(currentWeek);
     }
     if (currentMonth && currentMonth.weeks.length > 0) {
@@ -127,11 +137,11 @@ const ContributionGraph = ({ username }) => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     });
   };
 
@@ -150,7 +160,10 @@ const ContributionGraph = ({ username }) => {
 
   return (
     <div className="bg-black text-white rounded-xl font-space relative p-4 border border-white/10">
-      <div className="overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
+      <div
+        ref={setGraphScroller}
+        className="overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent"
+      >
         <div className="flex gap-2">
           {months.map((month, i) => (
             <div key={i} className="flex flex-col gap-2">
@@ -164,14 +177,17 @@ const ContributionGraph = ({ username }) => {
                 {month.weeks.map((week, j) => (
                   <div key={j} className="flex flex-col gap-[3px]">
                     {week.map((day, k) => {
-                      if (!day) return <div key={k} className="w-3 h-3 bg-transparent" />;
+                      if (!day)
+                        return (
+                          <div key={k} className="w-3 h-3 bg-transparent" />
+                        );
                       return (
                         <div
                           key={k}
                           onMouseEnter={(e) => handleMouseEnter(day, e)}
                           onMouseLeave={handleMouseLeave}
                           className={`w-3 h-3 rounded-sm ${getColor(
-                            day.contributionCount
+                            day.contributionCount,
                           )} transition-all duration-150 hover:ring-2 hover:ring-white/50 cursor-pointer`}
                         ></div>
                       );
@@ -191,11 +207,14 @@ const ContributionGraph = ({ username }) => {
           style={{
             left: `${tooltipPos.x}px`,
             top: `${tooltipPos.y}px`,
-            transform: 'translate(-50%, -100%)',
+            transform: "translate(-50%, -100%)",
           }}
         >
           <div className="font-semibold">
-            {hoveredDay.contributionCount} {hoveredDay.contributionCount === 1 ? 'contribution' : 'contributions'}
+            {hoveredDay.contributionCount}{" "}
+            {hoveredDay.contributionCount === 1
+              ? "contribution"
+              : "contributions"}
           </div>
           <div className="text-gray-400 text-xs mt-1">
             {formatDate(hoveredDay.date)}
@@ -218,6 +237,9 @@ const ContributionGraph = ({ username }) => {
           <span>More</span>
         </div>
       </div>
+      <p className="mt-2 text-[11px] text-gray-500 md:hidden">
+        Swipe left to see older activity
+      </p>
     </div>
   );
 };
