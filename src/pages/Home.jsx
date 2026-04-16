@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "../components/Hero";
 import Projects from "../components/Projects";
 import Experiences from "../components/Experiences";
@@ -7,10 +7,27 @@ import About from "../components/About";
 import GetInTouch from "../components/GetInTouch";
 import Certificates from "../components/Certificates";
 import CodingProfiles from "../components/CodingProfiles";
+import WelcomeIntro from "../components/WelcomeIntro";
 
 const Home = () => {
+  const [showWelcomeIntro, setShowWelcomeIntro] = useState(true);
+
+  useEffect(() => {
+    if (!showWelcomeIntro) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [showWelcomeIntro]);
+
   return (
-    <div className="md:px-24">
+    <div className="md:px-24 relative">
+      {showWelcomeIntro && (
+        <WelcomeIntro onComplete={() => setShowWelcomeIntro(false)} />
+      )}
       <Hero />
       <div className="w-full h-[75px] border-l border-r border-white/20 bg-[radial-gradient(circle,_#1D202A_1px,_transparent_1px)] [background-size:20px_18px] bg-[#000000]"></div>
       <Projects />
