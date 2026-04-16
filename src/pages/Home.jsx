@@ -9,8 +9,25 @@ import Certificates from "../components/Certificates";
 import CodingProfiles from "../components/CodingProfiles";
 import WelcomeIntro from "../components/WelcomeIntro";
 
+const WELCOME_INTRO_SEEN_KEY = "welcome-intro-seen";
+
 const Home = () => {
-  const [showWelcomeIntro, setShowWelcomeIntro] = useState(true);
+  const [showWelcomeIntro, setShowWelcomeIntro] = useState(() => {
+    try {
+      return sessionStorage.getItem(WELCOME_INTRO_SEEN_KEY) !== "true";
+    } catch {
+      return true;
+    }
+  });
+
+  const handleWelcomeComplete = () => {
+    try {
+      sessionStorage.setItem(WELCOME_INTRO_SEEN_KEY, "true");
+    } catch {
+      // Ignore storage failures and continue with local state.
+    }
+    setShowWelcomeIntro(false);
+  };
 
   useEffect(() => {
     if (!showWelcomeIntro) return undefined;
@@ -26,7 +43,7 @@ const Home = () => {
   return (
     <div className="md:px-24 relative">
       {showWelcomeIntro && (
-        <WelcomeIntro onComplete={() => setShowWelcomeIntro(false)} />
+        <WelcomeIntro onComplete={handleWelcomeComplete} />
       )}
       <Hero />
       <div className="w-full h-[75px] border-l border-r border-white/20 bg-[radial-gradient(circle,_#1D202A_1px,_transparent_1px)] [background-size:20px_18px] bg-[#000000]"></div>
