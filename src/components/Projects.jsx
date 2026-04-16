@@ -24,6 +24,14 @@ const Projects = () => {
 
   const projects = [
     {
+      name: "Sumora AI",
+      desc: "AI-powered career preparation platform with live voice mock interviews, interview prep, resume analysis, and performance analytics using a token-based pay-as-you-go model.",
+      img: "/sumoraai.png",
+      url: "https://sumoraai.in",
+      repo: "https://github.com/IndSumit07/Sumora-AI",
+      tech: ["React 19", "Node.js", "Express", "MongoDB", "Groq LLaMA 3.1", "Gemini 2.5 Flash", "Deepgram", "Razorpay"],
+    },
+    {
       name: "Chatter",
       desc: "Realtime chat app in which you can add friends chat in realtime with full privacy.",
       img: "/chatter.png",
