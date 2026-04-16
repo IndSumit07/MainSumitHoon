@@ -15,7 +15,16 @@ const Projects = () => {
       url: "https://sumoraai.in",
       repo: "https://github.com/IndSumit07/Sumora-AI",
       category: "Full Stack",
-      tech: ["React 19", "Node.js", "Express", "MongoDB", "Groq LLaMA 3.1", "Gemini 2.5 Flash", "Deepgram", "Razorpay"],
+      tech: [
+        "React 19",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Groq LLaMA 3.1",
+        "Gemini 2.5 Flash",
+        "Deepgram",
+        "Razorpay",
+      ],
     },
     {
       name: "Chatter",
@@ -33,7 +42,16 @@ const Projects = () => {
       url: "https://super-pass-delta.vercel.app/",
       repo: "https://github.com/IndSumit07/Super-Pass",
       category: "Full Stack",
-      tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js", "Razorpay", "Render", "Vercel"],
+      tech: [
+        "React.js",
+        "Tailwind CSS",
+        "Node.js",
+        "MongoDB",
+        "Express.js",
+        "Razorpay",
+        "Render",
+        "Vercel",
+      ],
     },
     {
       name: "SYRUS",
@@ -42,7 +60,14 @@ const Projects = () => {
       url: "https://syrus-nine.vercel.app/",
       repo: "https://github.com/IndSumit07/SYRUS",
       category: "Full Stack",
-      tech: ["React.js", "Node.js", "MongoDB", "Express.js", "Web Crawler", "SEO"],
+      tech: [
+        "React.js",
+        "Node.js",
+        "MongoDB",
+        "Express.js",
+        "Web Crawler",
+        "SEO",
+      ],
     },
     {
       name: "Bharat Netra",
@@ -51,7 +76,16 @@ const Projects = () => {
       category: "Full Stack",
       url: "https://official-bharat-netra.vercel.app/",
       repo: "https://github.com/CaffeinatedCodersOfficial/Bharat-Netra-Official",
-      tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js", "Render", "Vercel", "APIs"],
+      tech: [
+        "React.js",
+        "Tailwind CSS",
+        "Node.js",
+        "MongoDB",
+        "Express.js",
+        "Render",
+        "Vercel",
+        "APIs",
+      ],
     },
     {
       name: "HearWear",
@@ -96,7 +130,10 @@ const Projects = () => {
             onClick={() => navigate(-1)}
             className="flex justify-center items-center gap-3 border-2 border-white/50 px-4 py-2 rounded-xl hover:bg-white hover:text-black transition-all duration-300 cursor-pointer group"
           >
-            <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+            <ArrowLeft
+              size={20}
+              className="group-hover:-translate-x-1 transition-transform"
+            />
             <span>Back</span>
           </motion.div>
         </header>
@@ -113,10 +150,11 @@ const Projects = () => {
               <div
                 key={cat}
                 onClick={() => setActiveLink(cat)}
-                className={`${activeLink === cat
-                  ? "bg-[#1C1C1C] text-white"
-                  : "text-white/50 hover:text-white"
-                  } px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex justify-center items-center text-sm md:text-base`}
+                className={`${
+                  activeLink === cat
+                    ? "bg-[#1C1C1C] text-white"
+                    : "text-white/50 hover:text-white"
+                } px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex justify-center items-center text-sm md:text-base`}
               >
                 {cat}
               </div>
@@ -148,7 +186,9 @@ const Projects = () => {
                 </div>
                 <div className="w-full p-5 flex flex-col gap-4">
                   <div>
-                    <h3 className="text-2xl font-semibold group-hover:text-[#b2b2d8] transition-colors">{project.name}</h3>
+                    <h3 className="text-2xl font-semibold group-hover:text-[#b2b2d8] transition-colors">
+                      {project.name}
+                    </h3>
                     <p className="text-white/50 text-sm mt-2 line-clamp-2">
                       {project.desc}
                     </p>
@@ -156,7 +196,10 @@ const Projects = () => {
 
                   <div className="flex flex-wrap gap-2 text-xs">
                     {project.tech.map((t, i) => (
-                      <div key={i} className="bg-[#111111] px-3 py-1 rounded-full border-white/5 select-none border text-white/50">
+                      <div
+                        key={i}
+                        className="bg-[#111111] px-3 py-1 rounded-full border-white/5 select-none border text-white/50"
+                      >
                         {t}
                       </div>
                     ))}
@@ -178,7 +221,11 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="w-1/2 flex gap-2 justify-center items-center border border-white/10 py-2 rounded-md bg-gradient-to-b from-white/10 to-white/5 cursor-pointer hover:bg-gradient-to-b hover:from-white/20 hover:to-white/10 transition-all duration-300"
                     >
-                      <img src="/github.png" alt="Github" className="w-4 opacity-70" />
+                      <img
+                        src="/github.png"
+                        alt="Github"
+                        className="w-4 opacity-70"
+                      />
                       <span className="text-sm">Github</span>
                     </a>
                   </div>

@@ -29,7 +29,16 @@ const Projects = () => {
       img: "/sumoraai.png",
       url: "https://sumoraai.in",
       repo: "https://github.com/IndSumit07/Sumora-AI",
-      tech: ["React 19", "Node.js", "Express", "MongoDB", "Groq LLaMA 3.1", "Gemini 2.5 Flash", "Deepgram", "Razorpay"],
+      tech: [
+        "React 19",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Groq LLaMA 3.1",
+        "Gemini 2.5 Flash",
+        "Deepgram",
+        "Razorpay",
+      ],
     },
     {
       name: "Chatter",
@@ -45,7 +54,16 @@ const Projects = () => {
       img: "/Superpass.png",
       url: "https://super-pass-delta.vercel.app/",
       repo: "https://github.com/IndSumit07/Super-Pass",
-      tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js", "Razorpay", "Render", "Vercel"],
+      tech: [
+        "React.js",
+        "Tailwind CSS",
+        "Node.js",
+        "MongoDB",
+        "Express.js",
+        "Razorpay",
+        "Render",
+        "Vercel",
+      ],
     },
     {
       name: "SYRUS",
@@ -53,7 +71,14 @@ const Projects = () => {
       img: "/syrus.png",
       url: "https://syrus-nine.vercel.app/",
       repo: "https://github.com/IndSumit07/SYRUS",
-      tech: ["React.js", "Node.js", "MongoDB", "Express.js", "Web Crawler", "SEO"],
+      tech: [
+        "React.js",
+        "Node.js",
+        "MongoDB",
+        "Express.js",
+        "Web Crawler",
+        "SEO",
+      ],
     },
     {
       name: "Bharat Netra",
@@ -61,7 +86,16 @@ const Projects = () => {
       img: "/bharatnetra.png",
       url: "https://official-bharat-netra.vercel.app/",
       repo: "https://github.com/CaffeinatedCodersOfficial/Bharat-Netra-Official",
-      tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "Express.js", "Render", "Vercel", "APIs"],
+      tech: [
+        "React.js",
+        "Tailwind CSS",
+        "Node.js",
+        "MongoDB",
+        "Express.js",
+        "Render",
+        "Vercel",
+        "APIs",
+      ],
     },
     {
       name: "HearWear",
@@ -120,10 +154,14 @@ const Projects = () => {
                 supportsHover && (setHovered(false), setActiveIndex(null))
               }
               onTouchStart={() => setActiveIndex(index)}
-              whileHover={{ scale: 1.01, backgroundColor: "rgba(255, 255, 255, 0.03)" }}
+              whileHover={{
+                scale: 1.01,
+                backgroundColor: "rgba(255, 255, 255, 0.03)",
+              }}
               transition={{ duration: 0.3 }}
-              className={`rounded-lg px-4 py-5 transition-colors duration-300 border border-transparent hover:border-white/5 ${activeIndex === index ? "bg-white/5" : ""
-                }`}
+              className={`rounded-lg px-4 py-5 transition-colors duration-300 border border-transparent hover:border-white/5 ${
+                activeIndex === index ? "bg-white/5" : ""
+              }`}
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 {/* Left */}
