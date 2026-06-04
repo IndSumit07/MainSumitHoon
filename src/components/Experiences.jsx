@@ -9,6 +9,17 @@ const Experiences = () => {
 
   const experiences = [
     {
+      id: 0,
+      title: "Internship IIT Ropar",
+      type: "Internship",
+      logo: "https://www.uxdt.nic.in/wp-content/uploads/2024/06/iit-ropar-01.jpg",
+      details: [
+        "Selected for a summer internship at the prestigious Indian Institute of Technology, Ropar.",
+        "Will be working on advanced development projects.",
+      ],
+      tech: ["Development"],
+    },
+    {
       id: 1,
       title: "APGC Conference Website",
       type: "Internship",
@@ -84,6 +95,7 @@ const Experiences = () => {
                       src={exp.logo}
                       alt={exp.title}
                       className="h-full w-full bg-white object-cover rounded-md"
+                      onError={(e) => { e.target.style.display = 'none'; }}
                     />
                   </div>
                 </div>

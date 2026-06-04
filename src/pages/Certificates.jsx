@@ -9,6 +9,14 @@ const Certificates = () => {
 
     const certificates = [
         {
+            id: 0,
+            title: "Offer Letter - IIT Ropar",
+            image: "/iitroper_signed_letter.pdf",
+            issuer: "IIT Ropar",
+            date: "2026",
+            description: "Offer letter for Summer Research Internship at IIT Ropar."
+        },
+        {
             id: 1,
             title: "Participation Certificate - SIH 2025",
             image: "https://res.cloudinary.com/dwfwpivrm/image/upload/v1763626473/SIH_io2ae2.jpg",
@@ -82,16 +90,24 @@ const Certificates = () => {
                                 className="group relative border border-white/10 rounded-xl overflow-hidden cursor-pointer hover:border-white/30 transition-all duration-300 bg-[#111111] flex flex-col"
                             >
                                 <div className="w-full aspect-[4/3] bg-[#1a1a1a] flex items-center justify-center overflow-hidden p-4">
-                                    <img
-                                        src={cert.image}
-                                        alt={cert.title}
-                                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                                        onError={(e) => {
-                                            e.target.style.display = "none";
-                                            e.target.parentElement.innerHTML =
-                                                '<div class="text-white/40 text-sm text-center">Certificate Preview</div>';
-                                        }}
-                                    />
+                                    {cert.image.endsWith('.pdf') ? (
+                                        <iframe
+                                            src={`${cert.image}#toolbar=0&navpanes=0&scrollbar=0`}
+                                            title={cert.title}
+                                            className="w-full h-full object-cover rounded-lg pointer-events-none group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                    ) : (
+                                        <img
+                                            src={cert.image}
+                                            alt={cert.title}
+                                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                                            onError={(e) => {
+                                                e.target.style.display = "none";
+                                                e.target.parentElement.innerHTML =
+                                                    '<div class="text-white/40 text-sm text-center">Certificate Preview</div>';
+                                            }}
+                                        />
+                                    )}
                                 </div>
                                 <div className="p-5 flex-1 flex flex-col justify-between">
                                     <div>
@@ -138,11 +154,19 @@ const Certificates = () => {
                             </button>
 
                             <div className="w-full bg-[#111111] flex items-center justify-center p-4 md:p-8">
-                                <img
-                                    src={selectedCertificate.image}
-                                    alt={selectedCertificate.title}
-                                    className="w-full h-auto max-h-[75vh] object-contain"
-                                />
+                                {selectedCertificate.image.endsWith('.pdf') ? (
+                                    <iframe
+                                        src={selectedCertificate.image}
+                                        title={selectedCertificate.title}
+                                        className="w-full h-[75vh]"
+                                    />
+                                ) : (
+                                    <img
+                                        src={selectedCertificate.image}
+                                        alt={selectedCertificate.title}
+                                        className="w-full h-auto max-h-[75vh] object-contain"
+                                    />
+                                )}
                             </div>
 
                             <div className="p-6 border-t border-white/10 bg-[#050505]">

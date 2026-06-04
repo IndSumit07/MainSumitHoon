@@ -12,6 +12,25 @@ const ExperiencePage = () => {
 
   const experiences = [
     {
+      id: 0,
+      title: "Internship IIT Ropar",
+      company: "IIT Ropar",
+      type: "Internship",
+      logo: "https://www.uxdt.nic.in/wp-content/uploads/2024/06/iit-ropar-01.jpg",
+      description:
+        "Selected for a summer internship at the prestigious Indian Institute of Technology, Ropar.",
+      duration: "Upcoming",
+      tech: ["Development"],
+      certificates: [
+        {
+          title: "Offer Letter - IIT Ropar",
+          image: "/iitroper_signed_letter.pdf",
+          issuer: "IIT Ropar",
+          date: "2026",
+        },
+      ],
+    },
+    {
       id: 1,
       title: "APGC Conference Website",
       company: "GLA University",
@@ -166,6 +185,7 @@ const ExperiencePage = () => {
                           src={exp.logo}
                           alt={exp.company}
                           className="h-full w-full object-cover"
+                          onError={(e) => { e.target.style.display = 'none'; }}
                         />
                       </div>
                     </div>
@@ -221,16 +241,24 @@ const ExperiencePage = () => {
                           className="group relative border border-white/10 rounded-lg overflow-hidden cursor-pointer hover:border-white/30 transition-all duration-300 bg-[#111111]"
                         >
                           <div className="w-full aspect-[3/4] bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center overflow-hidden p-2">
-                            <img
-                              src={cert.image}
-                              alt={cert.title}
-                              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                              onError={(e) => {
-                                e.target.style.display = "none";
-                                e.target.parentElement.innerHTML =
-                                  '<div class="text-white/40 text-sm text-center">Certificate Preview</div>';
-                              }}
-                            />
+                            {cert.image.endsWith('.pdf') ? (
+                              <iframe
+                                src={`${cert.image}#toolbar=0&navpanes=0&scrollbar=0`}
+                                title={cert.title}
+                                className="w-full h-full object-cover rounded-lg pointer-events-none group-hover:scale-105 transition-transform duration-300"
+                              />
+                            ) : (
+                              <img
+                                src={cert.image}
+                                alt={cert.title}
+                                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                                onError={(e) => {
+                                  e.target.style.display = "none";
+                                  e.target.parentElement.innerHTML =
+                                    '<div class="text-white/40 text-sm text-center">Certificate Preview</div>';
+                                }}
+                              />
+                            )}
                           </div>
                           <div className="p-3 md:p-4">
                             <h5 className="font-semibold text-sm md:text-base mb-1 line-clamp-2">
@@ -283,16 +311,24 @@ const ExperiencePage = () => {
 
               {/* Certificate Image */}
               <div className="w-full bg-[#111111] flex items-center justify-center p-4 md:p-8">
-                <img
-                  src={selectedCertificate.image}
-                  alt={selectedCertificate.title}
-                  className="w-full h-auto max-h-[70vh] object-contain"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.parentElement.innerHTML =
-                      '<div class="text-white/40 p-20 text-center">Certificate image not available</div>';
-                  }}
-                />
+                {selectedCertificate.image.endsWith('.pdf') ? (
+                  <iframe
+                    src={selectedCertificate.image}
+                    title={selectedCertificate.title}
+                    className="w-full h-[70vh]"
+                  />
+                ) : (
+                  <img
+                    src={selectedCertificate.image}
+                    alt={selectedCertificate.title}
+                    className="w-full h-auto max-h-[70vh] object-contain"
+                    onError={(e) => {
+                      e.target.style.display = "none";
+                      e.target.parentElement.innerHTML =
+                        '<div class="text-white/40 p-20 text-center">Certificate image not available</div>';
+                    }}
+                  />
+                )}
               </div>
 
               {/* Certificate Info */}

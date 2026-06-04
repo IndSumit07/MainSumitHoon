@@ -27,6 +27,16 @@ const Projects = () => {
       ],
     },
     {
+      name: "Olly",
+      desc: "Interactive terminal AI coding assistant supporting 13+ AI providers for code generation, debugging, and task planning.",
+      img: "/olly.png",
+      url: "https://www.npmjs.com/package/my-olly",
+      repo: "https://github.com/IndSumit07/Project-Olly",
+      category: "Full Stack",
+      tech: ["TypeScript", "Bun", "Node.js", "AI SDK", "Commander", "Telegraf"],
+      imgClass: "object-left",
+    },
+    {
       name: "Chatter",
       desc: "Realtime chat app in which you can add friends chat in realtime with full privacy.",
       img: "/chatter.png",
@@ -180,7 +190,7 @@ const Projects = () => {
                   <img
                     src={project.img}
                     alt={project.name}
-                    className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                    className={`w-full h-full object-cover hover:scale-105 transition-all duration-500 ${project.imgClass || ""}`}
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
                 </div>
