@@ -219,7 +219,7 @@ const Hero = () => {
         <div className="group relative flex items-center bg-[#2e2e2f] rounded-full px-3 py-1.5 cursor-pointer transition-all duration-300 hover:px-5 hover:bg-[#3e3e3f]">
           <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]" />
           <span className="ml-0 max-w-0 overflow-hidden text-gray-300 text-sm opacity-0 transition-all duration-300 group-hover:ml-3 group-hover:max-w-[200px] group-hover:opacity-100 whitespace-nowrap">
-            Intern at IIT Ropar
+            Student at GLA University
           </span>
         </div>
       </motion.div>

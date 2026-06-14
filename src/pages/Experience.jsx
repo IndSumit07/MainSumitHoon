@@ -13,25 +13,6 @@ const ExperiencePage = () => {
   const experiences = [
     {
       id: 0,
-      title: "Internship IIT Ropar",
-      company: "IIT Ropar",
-      type: "Internship",
-      logo: "https://www.uxdt.nic.in/wp-content/uploads/2024/06/iit-ropar-01.jpg",
-      description:
-        "Selected for a summer internship at the prestigious Indian Institute of Technology, Ropar.",
-      duration: "Upcoming",
-      tech: ["Development"],
-      certificates: [
-        {
-          title: "Offer Letter - IIT Ropar",
-          image: "/iitroper_signed_letter.pdf",
-          issuer: "IIT Ropar",
-          date: "2026",
-        },
-      ],
-    },
-    {
-      id: 1,
       title: "APGC Conference Website",
       company: "GLA University",
       type: "Internship",
@@ -51,7 +32,7 @@ const ExperiencePage = () => {
       ],
     },
     {
-      id: 2,
+      id: 1,
       title: "Smart India Hackathon 2025 Internal",
       company: "GLA University",
       type: "Hackathon",

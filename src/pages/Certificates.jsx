@@ -7,16 +7,7 @@ const Certificates = () => {
     const navigate = useNavigate();
     const [selectedCertificate, setSelectedCertificate] = useState(null);
 
-    const certificates = [
-        {
-            id: 0,
-            title: "Offer Letter - IIT Ropar",
-            image: "/iitroper_signed_letter.pdf",
-            issuer: "IIT Ropar",
-            date: "2026",
-            description: "Offer letter for Summer Research Internship at IIT Ropar."
-        },
-        {
+    const certificates = [{
             id: 1,
             title: "Participation Certificate - SIH 2025",
             image: "https://res.cloudinary.com/dwfwpivrm/image/upload/v1763626473/SIH_io2ae2.jpg",
